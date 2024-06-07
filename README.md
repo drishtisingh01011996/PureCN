@@ -20,12 +20,15 @@ So, any files or directories present in /c/Users/drish/OneDrive/Documents/Docs/P
 
 ### 3. Create Tumor and Normal coverage files
 
-	Rscript PureCN/Coverage_1.R --out-dir ../in_bed/coverage/Tumor --bam ../in_bed/Intervals/S033.bam --intervals ../in_bed/Intervals/baits_hg38_interval.txt
+	Rscript PureCN/Coverage.R --out-dir ../in_bed/coverage/Tumor --bam ../in_bed/Intervals/S033.bam --intervals ../in_bed/Intervals/baits_hg38_interval.txt
+ 
+	Rscript PureCN/Coverage.R --out-dir ../in_bed/coverage/Normal --bam ../in_bed/Intervals/S043.bam --intervals ../in_bed/Intervals/baits_hg38_interval.txt
 
 ### 4. Create NormalDB
 
 In case no GC-normalization is performed:
 	ls -a ../in_bed/coverage/Normal/*_coverage.txt.gz | cat > normal_coverages.list
+ 
 	Rscript PureCN/NormalDB.R --out-dir ../in_bed/Normaldb/ --coverage-files normal_coverages.list --genome hg38
 
 ### 5. Create a mutect.vcf file if you haven't already
@@ -43,5 +46,6 @@ Rscript $PURECN/PureCN.R --out ../in_bed/PureCN_out_1/S033 --tumor ../in_bed/cov
 ### 1. Find coverage depth in both tumor and normal to compare thecoverage compatibility:
    
 	gatk DepthOfCoverage    -I S033_sorted.bam    -O gatk_coverage    -R hg38.fa    -L Exome.interval_list    --omit-depth-output-at-each-base    --omit-interval-statistics
+ 
 	gatk DepthOfCoverage    -I S043_sorted.bam    -O gatk_coverage    -R hg38.fa    -L Exome.interval_list    --omit-depth-output-at-each-base    --omit-interval-statistics
 	
