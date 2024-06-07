@@ -30,7 +30,7 @@ In case no GC-normalization is performed:
 
 ### 5. Create a mutect.vcf file if you haven't already
 
-	-> gatk Mutect2 -R hg38.fa -I S033.bam -L hg38_Twist_ILMN_Exome_2.5_Panel_annotated.BED --f1r2-tar-gz S033_tumor-f1r2.tar.gz -O S033_tumor_variants.vcf
+	gatk Mutect2 -R hg38.fa -I S033.bam -L hg38_Twist_ILMN_Exome_2.5_Panel_annotated.BED --f1r2-tar-gz S033_tumor-f1r2.tar.gz -O S033_tumor_variants.vcf
 
 ### 6. Run PureCN script
 
@@ -42,6 +42,6 @@ Rscript $PURECN/PureCN.R --out ../in_bed/PureCN_out_1/S033 --tumor ../in_bed/cov
 ## Extras in QC:
 ### 1. Find coverage depth in both tumor and normal to compare thecoverage compatibility:
    
-	->  gatk DepthOfCoverage    -I S033_sorted.bam    -O gatk_coverage    -R hg38.fa    -L Exome.interval_list    --omit-depth-output-at-each-base    --omit-interval-statistics
-	->  gatk DepthOfCoverage    -I S043_sorted.bam    -O gatk_coverage    -R hg38.fa    -L Exome.interval_list    --omit-depth-output-at-each-base    --omit-interval-statistics
+	gatk DepthOfCoverage    -I S033_sorted.bam    -O gatk_coverage    -R hg38.fa    -L Exome.interval_list    --omit-depth-output-at-each-base    --omit-interval-statistics
+	gatk DepthOfCoverage    -I S043_sorted.bam    -O gatk_coverage    -R hg38.fa    -L Exome.interval_list    --omit-depth-output-at-each-base    --omit-interval-statistics
 	
